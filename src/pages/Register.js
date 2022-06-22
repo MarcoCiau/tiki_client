@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Alert, FormRow, Logo } from "../components";
 import Wrapper from "../assets/wrappers/RegisterPage";
+import { clearAlert, displayAlert } from "../redux/actions/actions";
 // global context and useNavigate later
 
 const initialState = {
@@ -8,38 +10,52 @@ const initialState = {
   email: "",
   password: "",
   isMember: false,
-  showAlert: true,
 };
 // if possible prefer local state
 // global state
 
 function Register() {
+  const { isLoading, showAlert } = useSelector((state) => state.ui); //get state from redux's store
+  const dispatch = useDispatch(); //get redux-dispatch function
   const [values, setValues] = useState(initialState);
   const { name, email, password, isMember } = values;
-  // TODO: global context and useNavigate later
+
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !isMember });
+  };
 
   const handleChange = (e) => {
     console.log(e.target);
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    if (!email || !password || (!isMember && !name)) {
+      //show alert
+      dispatch(displayAlert);
+      setTimeout(() => {
+        dispatch(clearAlert);
+      }, 3000);
+      return false;
+    }
+    return true;
+  };
+  
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
-  };
-
-  const toggleMember = () => {
-    setValues({ ...values, isMember: !values.isMember });
+    if (!validateForm()) return;
+    console.log(name, email, password);
   };
 
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
         <Logo />
-        <h3>{values.isMember ? "Login" : "Register"}</h3>
-        {values.showAlert && <Alert />}
+        <h3>{isMember ? "Login" : "Register"}</h3>
+        {showAlert && <Alert />}
         {/* name field */}
 
-        {!values.isMember && (
+        {!isMember && (
           <FormRow
             type="text"
             name="name"
