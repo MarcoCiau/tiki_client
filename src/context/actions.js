@@ -44,7 +44,6 @@ export const registerUser = async (currentUser, dispatch) => {
       "http://localhost:4000/api/v1/auth/signup",
       currentUser
     );
-    console.log(response);
     const { accessToken: token, refreshToken, user } = response.data;
 
     dispatch({
@@ -52,10 +51,15 @@ export const registerUser = async (currentUser, dispatch) => {
       payload: {
         user,
         token,
-        refreshToken
+        refreshToken,
       },
     });
-    addUserToLocalStorage({ user, token, refreshToken, location: "timezone-here" });
+    addUserToLocalStorage({
+      user,
+      token,
+      refreshToken,
+      location: "timezone-here",
+    });
   } catch (error) {
     console.error(error);
     dispatch({
@@ -67,21 +71,32 @@ export const registerUser = async (currentUser, dispatch) => {
 };
 
 export const loginUser = async (currentUser, dispatch) => {
-  dispatch({ type: actionTypes.LOGIN_USER_BEGIN });
+  dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
   try {
-    const response = await axios.post("/api/v1/auth/login", currentUser);
-    const { token, user } = response.data;
+    const response = await axios.post(
+      "http://localhost:4000/api/v1/auth/signin",
+      currentUser
+    );
+    const { accessToken: token, refreshToken, user } = response.data;
     dispatch({
       type: actionTypes.LOGIN_USER_SUCCESS,
-      payload: { user, token },
+      payload: {
+        user,
+        token,
+        refreshToken,
+      },
     });
-
-    addUserToLocalStorage({ user, token, location: user.location });
+    addUserToLocalStorage({
+      user,
+      token,
+      refreshToken,
+      location: "timezone-here",
+    });
   } catch (error) {
     console.error(error);
     dispatch({
       type: actionTypes.LOGIN_USER_ERROR,
-      payload: { msg: error.response.data.msg },
+      payload: { msg: "Please, insert valid values" },
     });
   }
   clearAlert(dispatch);
