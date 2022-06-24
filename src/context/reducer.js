@@ -51,11 +51,6 @@ const reducer = (state, action) => {
         alertType: "danger",
         alertText: action.payload.msg,
       };
-    case actionTypes.LOGIN_USER_BEGIN:
-      return {
-        ...state,
-        isLoading: true,
-      };
     case actionTypes.LOGIN_USER_SUCCESS:
       return {
         ...state,
