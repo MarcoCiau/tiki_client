@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Alert, FormRow, Logo } from "../components";
 import Wrapper from "../assets/wrappers/RegisterPage";
-import { clearAlert, displayAlert } from "../redux/actions/actions";
+import { useAppContext } from "../context/appContext";
+import { displayAlert, registerUser, loginUser } from "../context/actions";
 // global context and useNavigate later
 
 const initialState = {
@@ -15,10 +16,10 @@ const initialState = {
 // global state
 
 function Register() {
-  const { isLoading, showAlert } = useSelector((state) => state.ui); //get state from redux's store
-  const dispatch = useDispatch(); //get redux-dispatch function
+  const { dispatch, isLoading, user, showAlert } = useAppContext(); //get state from app context store
   const [values, setValues] = useState(initialState);
   const { name, email, password, isMember } = values;
+  const navigate = useNavigate();
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !isMember });
@@ -29,24 +30,28 @@ function Register() {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const validateForm = () => {
-    if (!email || !password || (!isMember && !name)) {
-      //show alert
-      dispatch(displayAlert);
-      setTimeout(() => {
-        dispatch(clearAlert);
-      }, 3000);
-      return false;
-    }
-    return true;
-  };
-  
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
-    console.log(name, email, password);
+    if (!email || !password || (!isMember && !name)) {
+      displayAlert(dispatch);
+      return;
+    }
+    if (isMember) {
+      loginUser({ email, password }, dispatch);
+    } else {
+      registerUser({ name, email, password }, dispatch);
+    }
   };
 
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+    // eslint-disable-next-line
+  }, [user, navigate]);
+  
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
@@ -79,7 +84,7 @@ function Register() {
           handleChange={handleChange}
         />
 
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           submit
         </button>
         <p>
