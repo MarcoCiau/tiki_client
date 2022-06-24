@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useAppContext } from "../context/appContext";
 const Alert = () => {
-  const { alertType, alertText } = useSelector((state) => state.ui); //get events from redux's store
+  const { alertType, alertText } = useAppContext(); //get events from app context
   return <div className={`alert alert-${alertType}`}>{alertText}</div>
 };
 
