@@ -1,27 +1,42 @@
 import { useState } from "react";
-import { FormRow, Alert } from "../../components";
+import { FormRow, FormRowSelect, Alert } from "../../components";
 import { useAppContext } from "../../context/appContext";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import { displayAlert, updateUser } from "../../context/actions";
+import { timezones } from "../../util/timezoneList";
 
 const Profile = () => {
   const { dispatch, user, showAlert, isLoading } = useAppContext();
-  const [name, setName] = useState(user?.name);
-  const [email, setEmail] = useState(user?.email);
-  const [lastName, setLastName] = useState(user?.lastName);
-  const [location, setLocation] = useState(user?.location);
+  const [profile, setProfile] = useState({
+    name: user?.name,
+    email: user?.email,
+    timezone: user?.timezone,
+  });
+
+  const { name = "", email = "", timezone = "" } = profile;
+
+  const handleChange = (e) => {
+    setProfile((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !email || !lastName || !location) {
+    if (!name || !email || !timezone) {
       // test and remove temporary
       displayAlert(dispatch);
       return;
     }
-    console.log({ name, email, lastName, location });
-    //updateUser(dispatch, { name, email, lastName, location });
+    updateUser(dispatch, { name, email, timezone });
   };
 
+  const getTimezoneList = () => {
+    return timezones.map((tz) => tz.text);
+  }
   return (
     <Wrapper>
       <form className="form" onSubmit={handleSubmit}>
@@ -34,27 +49,22 @@ const Profile = () => {
             type="text"
             name="name"
             value={name}
-            handleChange={(e) => setName(e.target.value)}
+            handleChange={handleChange}
           />
-          <FormRow
-            labelText="last name"
-            type="text"
-            name="lastName"
-            value={lastName}
-            handleChange={(e) => setLastName(e.target.value)}
-          />
+
           <FormRow
             type="email"
             name="email"
             value={email}
-            handleChange={(e) => setEmail(e.target.value)}
+            handleChange={handleChange}
           />
 
-          <FormRow
-            type="text"
-            name="location"
-            value={location}
-            handleChange={(e) => setLocation(e.target.value)}
+            <FormRowSelect
+            labelText='Timezone'
+            name='timezone'
+            value={timezone}
+            handleChange={handleChange}
+            list={getTimezoneList()}
           />
           <button className="btn btn-block" type="submit" disabled={isLoading}>
             {isLoading ? "Please Wait..." : "save changes"}
