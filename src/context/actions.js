@@ -108,15 +108,19 @@ export const logoutUser = (dispatch) => {
 };
 
 export const updateUser = async (dispatch, currentUser) => {
-  dispatch({ type: actionTypes.UPDATE_USER_BEGIN });
+  dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
   try {
-    const { data } = await authFetch.patch("/auth/updateUser", currentUser);
-    const { user, location, token } = data;
+    const { data } = await authFetch.patch("/auth/user", currentUser);
+    const { accessToken: token="", refreshToken="", user=""  } = data;
     dispatch({
       type: actionTypes.UPDATE_USER_SUCCESS,
-      payload: { user, token },
+      payload: {
+        user,
+        token,
+        refreshToken,
+      },
     });
-    addUserToLocalStorage({ user, token, location });
+    localStorage.setItem('user', JSON.stringify(user));
   } catch (error) {
     dispatch({
       type: actionTypes.UPDATE_USER_ERROR,
