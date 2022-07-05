@@ -42,7 +42,7 @@ const AppContext = React.createContext();
 
 //global axios instance for protected end-points (require bearer token)
 export const authFetch = axios.create({
-  baseURL: '/api/v1',
+  baseURL: 'http://localhost:4000/api/v1',//TODO: setup env variable
 })
 //Defining a provider (wrapper)
 //Wrap child components in the Context Provider and supply the state value.
@@ -52,7 +52,8 @@ export const AppProvider = ({ children }) => {
   // request
   authFetch.interceptors.request.use(
     (config) => {
-      config.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+      config.headers.common['x-token'] = localStorage.getItem('token');//TODO: setup env variable
+      // config.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
       return config;
     },
     (error) => {
