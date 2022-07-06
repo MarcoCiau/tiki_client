@@ -1259,3 +1259,9 @@ export const timezones = [
     utc: ["Pacific/Apia"],
   },
 ];
+
+export const getUTCOffsetFromTimezoneString = (timezone = "UTC") => {
+  let utcOffset = timezones.find(item => item.text === timezone );
+  if (utcOffset) return utcOffset.offset;
+  return 0;
+};
