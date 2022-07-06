@@ -141,6 +141,32 @@ export const handleClearFormValues = (dispatch) => {
   dispatch({ type: actionTypes.HANDLE_CLEAR_FORM_VALUES });
 };
 
+export const getDevices = async (dispatch, searchQuery) => {
+  // dispatch({ type: actionTypes.GET_JOBS_BEGIN });
+  dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
+  // const { page, search, searchStatus, searchType, sort } = searchQuery;//TODO: handle pagination
+  // let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;//TODO: handle pagination
+  // if (search) {
+  //   url += `search=${search}`;
+  // }
+  try {
+    const { data } = await authFetch.get("/device");
+    const { devices, totalJobs = 1, numOfPages = 1 } = data;
+    console.log(data);
+    dispatch({
+      type: actionTypes.GET_DEVICES_SUCESS,
+      payload: {
+        devices,
+        totalDevices : 1,
+        numOfPages : 1,
+      },
+    });
+  } catch (error) {
+    logoutUser(dispatch);
+  }
+  clearAlert(dispatch);
+};
+
 export const createJob = async (
   dispatch,
   position,

@@ -105,6 +105,13 @@ const reducer = (state, action) => {
         alertType: "danger",
         alertText: action.payload.msg,
       };
+    case actionTypes.GET_DEVICES_SUCESS:
+      return {
+        ...state,
+        devices: action.payload.devices,
+        // totalDevices: action.payload.totalJobs,//TODO: get total of devices from backend
+        // numOfPages: action.payload.numOfPages,//TODO: get device's pagination from backend
+      }
     case actionTypes.HANDLE_FORM_INPUT_CHANGE:
       return {
         ...state,
