@@ -110,8 +110,8 @@ const reducer = (state, action) => {
         ...state,
         devices: action.payload.devices,
         isLoading: false,
-        // totalDevices: action.payload.totalJobs,//TODO: get total of devices from backend
-        // numOfPages: action.payload.numOfPages,//TODO: get device's pagination from backend
+        totalDevices: action.payload.totalDevices,
+        numOfPages: action.payload.numOfPages,
       }
     case actionTypes.HANDLE_FORM_INPUT_CHANGE:
       return {

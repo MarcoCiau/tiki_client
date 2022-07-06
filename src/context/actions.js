@@ -142,22 +142,21 @@ export const handleClearFormValues = (dispatch) => {
 };
 
 export const getDevices = async (dispatch, searchQuery) => {
-  // dispatch({ type: actionTypes.GET_JOBS_BEGIN });
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
-  // const { page, search, searchStatus, searchType, sort } = searchQuery;//TODO: handle pagination
-  // let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;//TODO: handle pagination
-  // if (search) {
-  //   url += `search=${search}`;
-  // }
+  const { page, search, searchStatus, sort } = searchQuery;
+  let url = `/device?page=${page}&status=${searchStatus}&sort=${sort}`;
+  if (search) {
+    url += `search=${search}`;
+  }
   try {
-    const { data } = await authFetch.get("/device");
-    const { devices, totalJobs = 1, numOfPages = 1 } = data;
+    const { data } = await authFetch.get(url);
+    const { devices, totalDevices = 1, numOfPages = 1 } = data;
     dispatch({
       type: actionTypes.GET_DEVICES_SUCESS,
       payload: {
         devices,
-        totalDevices : 1,
-        numOfPages : 1,
+        totalDevices,
+        numOfPages,
       },
     });
   } catch (error) {
