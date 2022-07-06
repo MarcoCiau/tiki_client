@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import moment from "moment";
 import { useAppContext } from "../../context/appContext";
-import { PageActions, Table } from "../../components";
+import { Table } from "../../components";
 import TableActions from "../../components/TableActions";
 import { getDevices } from "../../context/actions";
 import { getUTCOffsetFromTimezoneString } from "../../util/timezoneList";
+import SearchContainer from "../../components/SearchContainer";
 
 const Device = () => {
   const { dispatch, user, devices } = useAppContext(); //get state from app context store
@@ -13,8 +14,10 @@ const Device = () => {
     // eslint-disable-next-line
   }, []);
 
-  const utcOffset = React.useMemo(() => getUTCOffsetFromTimezoneString(user.timezone), []);
-  console.log(utcOffset);
+  const utcOffset = React.useMemo(
+    () => getUTCOffsetFromTimezoneString(user.timezone),
+    []
+  );
   const columns = React.useMemo(
     () => [
       {
@@ -65,7 +68,7 @@ const Device = () => {
 
   return (
     <>
-      <PageActions />
+      <SearchContainer />
       <Table columns={columns} data={devices} />
     </>
   );
