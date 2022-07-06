@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import makeData from "../../util/makeData";
-import { Table } from "../../components";
+import { PageActions, Table } from "../../components";
 import TableActions from "../../components/TableActions";
+
 const Device = () => {
   const columns = React.useMemo(
     () => [
@@ -34,7 +35,13 @@ const Device = () => {
     []
   );
   const data = React.useMemo(() => makeData(20), []);
-  return <Table columns={columns} data={data} />;
+
+  return (
+    <>
+      <PageActions />
+      <Table columns={columns} data={data} />
+    </>
+  );
 };
 
 export default Device;
