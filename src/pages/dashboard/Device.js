@@ -8,11 +8,12 @@ import { getUTCOffsetFromTimezoneString } from "../../util/timezoneList";
 import SearchContainer from "../../components/SearchContainer";
 
 const Device = () => {
-  const { dispatch, user, devices } = useAppContext(); //get state from app context store
+  const { dispatch, user, devices,
+  page, search, searchStatus, sort, numOfPages, totalDevices } = useAppContext(); //get state from app context store
   useEffect(() => {
-    getDevices(dispatch, {});
+    getDevices(dispatch, {page, search, searchStatus, sort});
     // eslint-disable-next-line
-  }, []);
+  }, [page, search, searchStatus, sort]);
 
   const utcOffset = React.useMemo(
     () => getUTCOffsetFromTimezoneString(user.timezone),
@@ -65,7 +66,17 @@ const Device = () => {
     ],
     []
   );
-
+  if (totalDevices === 0) {
+    return (
+      <>
+        <h2>No devices to display...</h2>
+        <button
+        className="btn btn-hero btn-primary">
+          Add Device
+        </button>
+      </>
+    );
+  }
   return (
     <>
       <SearchContainer />
