@@ -1,32 +1,40 @@
 import React from "react";
-import { FaEdit } from "react-icons/fa";
-import { AiTwotoneDelete } from "react-icons/ai";
-import {IoMdAddCircle} from "react-icons/io";
-import {MdRefresh, MdSearch} from "react-icons/md"
-import { NavLink } from "react-router-dom";
+import { IoMdAddCircle } from "react-icons/io";
+import { MdRefresh, MdSearch } from "react-icons/md";
 import Wrapper from "../assets/wrappers/PageActions";
-const PageActions = () => {
+import IconAction from "./IconAction";
+
+const PageActions = ({
+  handleAdd,
+  handleRefresh,
+  handleSearch,
+  hideSearch = false,
+}) => {
   return (
     <Wrapper>
       <div className="actions">
         <div className="action">
-          <NavLink to="/device" onClick={() => console.log("add")}>
-            <span className="icon">{<IoMdAddCircle />}</span>
-          </NavLink>
+          <IconAction
+            handleClick={handleAdd}
+            icon={<IoMdAddCircle />}
+          ></IconAction>
         </div>
 
         <div className="action">
-          <NavLink to="/device" onClick={() => console.log("refresh")}>
-            <span className="icon">{<MdRefresh />}</span>
-          </NavLink>
+          <IconAction
+            handleClick={handleRefresh}
+            icon={<MdRefresh />}
+          ></IconAction>
         </div>
 
         <div className="action">
-          <NavLink to="/device" onClick={() => console.log("search")}>
-            <span className="icon">{<MdSearch />}</span>
-          </NavLink>
+          {!hideSearch && (
+            <IconAction
+              handleClick={handleSearch}
+              icon={<MdSearch />}
+            ></IconAction>
+          )}
         </div>
-
       </div>
     </Wrapper>
   );
