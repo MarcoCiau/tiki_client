@@ -3,7 +3,11 @@ import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import FormRow from "./FormRow";
 import FormRowSelect from "./FormRowSelect";
 import Wrapper from "../assets/wrappers/SearchContainer";
-import { clearFilters, handleFormInputChange } from "../context/actions";
+import {
+  clearFilters,
+  getDevices,
+  handleFormInputChange,
+} from "../context/actions";
 import { useAppContext } from "../context/appContext";
 import IconAction from "./IconAction";
 import PageActions from "./PageActions";
@@ -19,6 +23,7 @@ const SearchContainer = () => {
     sort,
     sortOptions,
     statusOptions,
+    page,
   } = useAppContext();
 
   const handleSearch = (e) => {
@@ -42,11 +47,16 @@ const SearchContainer = () => {
     setCollapseForm(!collapseForm);
   };
 
+  const handleRefreshDevices = () => {
+    if (isLoading) return;
+    getDevices(dispatch, { page, search, searchStatus, sort });
+  };
   const [collapseForm, setCollapseForm] = useState(true);
 
   return (
     <Wrapper>
       <PageActions
+        handleRefresh={handleRefreshDevices}
         handleSearch={handleShowSearchForm}
         hideSearch={!collapseForm}
       />
