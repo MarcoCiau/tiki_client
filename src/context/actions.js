@@ -152,7 +152,6 @@ export const getDevices = async (dispatch, searchQuery) => {
   try {
     const { data } = await authFetch.get("/device");
     const { devices, totalJobs = 1, numOfPages = 1 } = data;
-    console.log(data);
     dispatch({
       type: actionTypes.GET_DEVICES_SUCESS,
       payload: {
@@ -166,7 +165,7 @@ export const getDevices = async (dispatch, searchQuery) => {
   }
   clearAlert(dispatch);
 };
-
+//TODO:delete here
 export const createJob = async (
   dispatch,
   position,

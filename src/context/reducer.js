@@ -109,6 +109,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         devices: action.payload.devices,
+        isLoading: false,
         // totalDevices: action.payload.totalJobs,//TODO: get total of devices from backend
         // numOfPages: action.payload.numOfPages,//TODO: get device's pagination from backend
       }
@@ -126,7 +127,6 @@ const reducer = (state, action) => {
         position: "",
         company:"",
         jobLocation: state.userLocation,
-        jobType: "full-time",
         status: "pending"
       }
       case actionTypes.CREATE_JOB_BEGIN:
@@ -173,7 +173,7 @@ const reducer = (state, action) => {
         sort: 'latest',
       };
 
-    case actionTypes.SET_EDIT_JOB:
+    case actionTypes.SET_EDIT_JOB://TODO: delete here
       // const job = state.jobs.find((job) => job._id === action.payload.id)
       const { _id, position, company, jobLocation, jobType, status } = action.payload.job;
       return {
