@@ -20,6 +20,8 @@ const initialState = {
   userLocation: localStorage.getItem('location') || '',
   jobLocation: localStorage.getItem('location') || '',
   isEditing: false,
+  editDeviceId: "",
+  editDeviceObj:{},
   editJobId: '',
   position: '',
   company: '',

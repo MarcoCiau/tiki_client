@@ -133,11 +133,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         isEditing: false,
-        editJobId: "",
-        position: "",
-        company:"",
-        jobLocation: state.userLocation,
-        status: "pending"
+        editDeviceId: "",
+        editDeviceObj: {},
       }
       case actionTypes.CREATE_JOB_BEGIN:
         return {
@@ -199,18 +196,30 @@ const reducer = (state, action) => {
         sort: 'latest',
       };
 
-    case actionTypes.SET_EDIT_JOB://TODO: delete here
-      // const job = state.jobs.find((job) => job._id === action.payload.id)
-      const { _id, position, company, jobLocation, jobType, status } = action.payload.job;
+    case actionTypes.SET_EDIT_DEVICE:
+    const deviceEdit = state.devices.find(({_id}) => _id === action.payload);
       return {
         ...state,
         isEditing: true,
-        editJobId: _id,
-        position,
-        company,
-        jobLocation,
-        jobType,
-        status,
+        showModal: true,
+        editDeviceId: action.payload,
+        editDeviceObj: deviceEdit,
+      }
+    case actionTypes.EDIT_DEVICE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'success',
+        alertText: 'Device Updated!',
+      }
+    case actionTypes.EDIT_DEVICE_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: action.payload.msg,
       }
     case actionTypes.DELETE_JOB_BEGIN:
     case actionTypes.EDIT_JOB_BEGIN:

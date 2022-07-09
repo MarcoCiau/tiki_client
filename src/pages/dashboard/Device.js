@@ -11,11 +11,11 @@ import AddEditDeviceForm from "../../components/AddEditDeviceForm";
 
 const Device = () => {
   const { dispatch, user, devices,
-  page, search, searchStatus, sort, numOfPages, totalDevices, showModal } = useAppContext(); //get state from app context store
+  page, search, searchStatus, sort, numOfPages, totalDevices, showModal, editDeviceId } = useAppContext(); //get state from app context store
   useEffect(() => {
     getDevices(dispatch, {page, search, searchStatus, sort});
     // eslint-disable-next-line
-  }, [page, search, searchStatus, sort]);
+  }, [page, search, searchStatus, sort, editDeviceId]);
 
   const utcOffset = React.useMemo(
     () => getUTCOffsetFromTimezoneString(user.timezone),
@@ -62,8 +62,8 @@ const Device = () => {
       },
       {
         Header: "Actions",
-        accessor: "",
-        Cell: ({ cell: { value } }) => <TableActions values={value} />,
+        accessor: "_id",
+        Cell: ({ cell: { value } }) => <TableActions _id={value} />,
       },
     ],
     []

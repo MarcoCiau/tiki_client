@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { FormRow, FormRowSelect, Alert } from "./";
 import { useAppContext } from "../context/appContext"
 import Wrapper from "../assets/wrappers/AddEditDeviceForm";
-import { displayAlert, closeModal, createDevice } from "../context/actions";
+import { displayAlert, closeModal, createDevice, editDevice } from "../context/actions";
 
 const AddEditDeviceForm = () => {
-  const { dispatch, user, showAlert, isLoading, isEditing } = useAppContext();
+  const { dispatch, showAlert, isLoading, isEditing, editDeviceId, editDeviceObj, devices } = useAppContext();
+
   const [device, setDevice] = useState({
-    name: "",
-    mac: "",
-    token: "",
+    name: editDeviceObj.name,
+    mac: editDeviceObj.mac,
+    token: editDeviceObj.token,
     type: 1
   });
   const { name = "", mac = "", token = "", type=1 } = device;
@@ -28,6 +29,18 @@ const AddEditDeviceForm = () => {
     if (!name || !mac || (isEditing && !token)) {
       // test and remove temporary
       displayAlert(dispatch);
+      return;
+    }
+    console.log(device);
+    if(isEditing) {
+      editDevice(dispatch, {_id: editDeviceObj._id, name, mac, token, type});
+      setDevice({
+        name: "",
+        mac: "",
+        token: "",
+        type: 1
+      });
+      closeModal(dispatch);
       return;
     }
     createDevice(dispatch, {name, mac, type});

@@ -243,24 +243,24 @@ export const getJobs = async (dispatch, searchQuery) => {
   clearAlert(dispatch);
 };
 
-export const setEditJob = (dispatch, job) => {
+export const setEditDevice = (dispatch, deviceId) => {
   dispatch({
-    type: actionTypes.SET_EDIT_JOB,
-    payload: { job },
+    type: actionTypes.SET_EDIT_DEVICE,
+    payload: deviceId,
   });
 };
 
-export const editJob = async (dispatch, job) => {
-  dispatch({ type: actionTypes.EDIT_JOB_BEGIN });
-  const { editJobId: jobId, ...jobToBeUpdated } = job;
+export const editDevice = async (dispatch, device) => {
+  dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
+  const { _id: deviceId, ...deviceToBeUpdated } = device;
   try {
-    await authFetch.patch(`/jobs/${jobId}`, { ...jobToBeUpdated });
+    await authFetch.put(`/device/${deviceId}`, { ...deviceToBeUpdated });
     dispatch({ type: actionTypes.EDIT_JOB_SUCCESS });
     dispatch({ type: actionTypes.HANDLE_CLEAR_FORM_VALUES }); //clear form values
   } catch (error) {
     if (error.response.status === 401) return; //error handled by axios interceptor
     dispatch({
-      type: actionTypes.EDIT_JOB_ERROR,
+      type: actionTypes.EDIT_DEVICE_ERROR,
       payload: { msg: error.response.data.msg },
     });
   }
