@@ -2,17 +2,17 @@ import { useState } from "react";
 import { FormRow, FormRowSelect, Alert } from "./";
 import { useAppContext } from "../context/appContext"
 import Wrapper from "../assets/wrappers/AddEditDeviceForm";
-import { displayAlert, updateUser, showModal, closeModal } from "../context/actions";
-import { timezones } from "../util/timezoneList";
+import { displayAlert, closeModal, createDevice } from "../context/actions";
 
 const AddEditDeviceForm = () => {
   const { dispatch, user, showAlert, isLoading, isEditing } = useAppContext();
   const [device, setDevice] = useState({
-    name: "tiki-device",
-    mac: "FF:FF:FF:FF:FF:FF",
+    name: "",
+    mac: "",
     token: "",
+    type: 1
   });
-  const { name = "", mac = "", token = "" } = device;
+  const { name = "", mac = "", token = "", type=1 } = device;
 
   const handleChange = (e) => {
     setDevice((prevState) => {
@@ -25,17 +25,29 @@ const AddEditDeviceForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !mac || !token) {
+    if (!name || !mac || (isEditing && !token)) {
       // test and remove temporary
       displayAlert(dispatch);
       return;
     }
-    // updateUser(dispatch, { name, email, timezone });
+    createDevice(dispatch, {name, mac, type});
+    setDevice({
+      name: "",
+      mac: "",
+      token: "",
+      type: 1
+    });
   };
 
   const closeModalHandler = (e) => {
     e.preventDefault();
     closeModal(dispatch);
+    setDevice({
+      name: "",
+      mac: "",
+      token: "",
+      type: 1
+    });
   }
 
   return (

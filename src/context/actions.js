@@ -172,6 +172,23 @@ export const getDevices = async (dispatch, searchQuery) => {
   }
   clearAlert(dispatch);
 };
+
+export const createDevice = async (dispatch, job) => {
+  dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
+  const { name="", mac="", type="1" } = job;
+  try {
+    await authFetch.post("/device" , {name, mac, type});
+    dispatch({ type: actionTypes.CREATE_DEVICE_SUCCESS });
+  } catch (error) {
+    if (error.response.status === 401) return;
+    dispatch({
+      type: actionTypes.CREATE_DEVICE_ERROR,
+      payload: { msg: error.response.data.msg },
+    });
+  }
+  clearAlert(dispatch);
+};
+
 //TODO:delete here
 export const createJob = async (
   dispatch,

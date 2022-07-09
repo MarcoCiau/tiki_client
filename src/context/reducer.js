@@ -160,6 +160,22 @@ const reducer = (state, action) => {
           alertType: 'danger',
           alertText: action.payload.msg,
         }
+        case actionTypes.CREATE_DEVICE_SUCCESS:
+          return {
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'success',
+            alertText: 'New Device Created!',
+          }
+        case actionTypes.CREATE_DEVICE_ERROR:
+          return {
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'danger',
+            alertText: action.payload.msg,
+          }
       case actionTypes.GET_JOBS_BEGIN:
       return {
         ...state,
