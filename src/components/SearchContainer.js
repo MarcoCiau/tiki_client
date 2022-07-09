@@ -7,10 +7,12 @@ import {
   clearFilters,
   getDevices,
   handleFormInputChange,
+  showModal,
 } from "../context/actions";
 import { useAppContext } from "../context/appContext";
 import IconAction from "./IconAction";
 import PageActions from "./PageActions";
+
 // import CollapseButton from "./CollapseButton";
 
 const SearchContainer = () => {
@@ -42,6 +44,10 @@ const SearchContainer = () => {
     clearFilters(dispatch);
   };
 
+  const handleAddDevices = () => {
+    showModal(dispatch);
+  }
+
   const handleShowSearchForm = () => {
     if (isLoading) return;
     setCollapseForm(!collapseForm);
@@ -56,6 +62,7 @@ const SearchContainer = () => {
   return (
     <Wrapper>
       <PageActions
+        handleAdd={handleAddDevices}
         handleRefresh={handleRefreshDevices}
         handleSearch={handleShowSearchForm}
         hideSearch={!collapseForm}

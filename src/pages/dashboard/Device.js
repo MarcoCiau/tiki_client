@@ -6,10 +6,12 @@ import TableActions from "../../components/TableActions";
 import { getDevices } from "../../context/actions";
 import { getUTCOffsetFromTimezoneString } from "../../util/timezoneList";
 import SearchContainer from "../../components/SearchContainer";
+import ModalForm from "../../components/ModalForm";
+import AddEditDeviceForm from "../../components/AddEditDeviceForm";
 
 const Device = () => {
   const { dispatch, user, devices,
-  page, search, searchStatus, sort, numOfPages, totalDevices } = useAppContext(); //get state from app context store
+  page, search, searchStatus, sort, numOfPages, totalDevices, showModal } = useAppContext(); //get state from app context store
   useEffect(() => {
     getDevices(dispatch, {page, search, searchStatus, sort});
     // eslint-disable-next-line
@@ -79,6 +81,9 @@ const Device = () => {
   }
   return (
     <>
+    <ModalForm modalIsOpen={showModal}>
+      <AddEditDeviceForm />
+    </ModalForm>
       <SearchContainer />
       <Table columns={columns} data={devices} />
     </>
