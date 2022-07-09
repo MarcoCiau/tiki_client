@@ -17,6 +17,14 @@ export const clearAlert = (dispatch) => {
   }, 3000);
 };
 
+export const showModal = (dispatch) => {
+  dispatch({ type: actionTypes.SHOW_MODAL});
+}
+
+export const closeModal = (dispatch) => {
+  dispatch({ type: actionTypes.CLOSE_MODAL});
+}
+
 export const toggleSidebar = (dispatch) => {
   dispatch({ type: actionTypes.TOGGLE_SIDEBAR });
 };

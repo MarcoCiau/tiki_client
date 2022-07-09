@@ -11,6 +11,7 @@ const initialState = {
   isLoading: false,
   showAlert: false,
   showSidebar: false,
+  showModal: false,
   alertText: "",
   alertType: "",
   user: user ? JSON.parse(user) : null,

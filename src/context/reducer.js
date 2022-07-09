@@ -16,6 +16,16 @@ const reducer = (state, action) => {
         alertType: "",
         alertText: "",
       };
+    case actionTypes.SHOW_MODAL:
+        return {
+          ...state,
+          showModal: true,
+        };
+    case actionTypes.CLOSE_MODAL:
+        return {
+          ...state,
+          showModal: false,
+        };
     case actionTypes.TOGGLE_SIDEBAR:
       return {
         ...state,
