@@ -5,7 +5,7 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import Wrapper from "../assets/wrappers/TableAction";
 import { useAppContext } from "../context/appContext";
-import { setEditDevice, showModal } from "../context/actions";
+import { setEditDevice } from "../context/actions";
 
 const TableActions = ({_id}) => {
   const { dispatch } = useAppContext();

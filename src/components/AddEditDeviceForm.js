@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
-import { FormRow, FormRowSelect, Alert } from "./";
+import { useState } from "react";
+import { FormRow, Alert } from "./";
 import { useAppContext } from "../context/appContext"
 import Wrapper from "../assets/wrappers/AddEditDeviceForm";
 import { displayAlert, closeModal, createDevice, editDevice } from "../context/actions";
 
 const AddEditDeviceForm = () => {
-  const { dispatch, showAlert, isLoading, isEditing, editDeviceId, editDeviceObj, devices } = useAppContext();
+  const { dispatch, showAlert, isLoading, isEditing, editDeviceObj } = useAppContext();
 
   const [device, setDevice] = useState({
     name: editDeviceObj.name,

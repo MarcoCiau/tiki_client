@@ -10,8 +10,7 @@ import ModalForm from "../../components/ModalForm";
 import AddEditDeviceForm from "../../components/AddEditDeviceForm";
 
 const Device = () => {
-  const { dispatch, user, devices,
-  page, search, searchStatus, sort, numOfPages, totalDevices, showModal, editDeviceId } = useAppContext(); //get state from app context store
+  const { dispatch, user, devices, page, search, searchStatus, sort, totalDevices, showModal, editDeviceId } = useAppContext(); //get state from app context store
   useEffect(() => {
     getDevices(dispatch, {page, search, searchStatus, sort});
     // eslint-disable-next-line
@@ -19,6 +18,7 @@ const Device = () => {
 
   const utcOffset = React.useMemo(
     () => getUTCOffsetFromTimezoneString(user.timezone),
+    // eslint-disable-next-line 
     []
   );
   const columns = React.useMemo(
@@ -66,6 +66,7 @@ const Device = () => {
         Cell: ({ cell: { value } }) => <TableActions _id={value} />,
       },
     ],
+    // eslint-disable-next-line 
     []
   );
   if (totalDevices === 0) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import FormRow from "./FormRow";
 import FormRowSelect from "./FormRowSelect";
 import Wrapper from "../assets/wrappers/SearchContainer";
@@ -21,7 +21,6 @@ const SearchContainer = () => {
     isLoading,
     search,
     searchStatus,
-    searchType,
     sort,
     sortOptions,
     statusOptions,
@@ -35,12 +34,6 @@ const SearchContainer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    clearFilters(dispatch);
-  };
-
-  const handleHideSearchForm = () => {
-    if (isLoading) return;
-    setCollapseForm(true);
     clearFilters(dispatch);
   };
 
