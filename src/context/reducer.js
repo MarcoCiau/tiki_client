@@ -25,6 +25,8 @@ const reducer = (state, action) => {
         return {
           ...state,
           showModal: false,
+          editDeviceId: "",
+          editDeviceObj: {},
         };
     case actionTypes.TOGGLE_SIDEBAR:
       return {
