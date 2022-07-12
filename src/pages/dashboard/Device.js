@@ -10,7 +10,7 @@ import ModalForm from "../../components/ModalForm";
 import AddEditDeviceForm from "../../components/AddEditDeviceForm";
 
 const Device = () => {
-  const { dispatch, user, devices, page, search, searchStatus, sort, totalDevices, showModal, editDeviceId } = useAppContext(); //get state from app context store
+  const { dispatch, user, devices, page, search, searchStatus, sort, showModal } = useAppContext(); //get state from app context store
   useEffect(() => {
     getDevices(dispatch, {page, search, searchStatus, sort});
     // eslint-disable-next-line

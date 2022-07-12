@@ -2,6 +2,7 @@ import React from "react";
 import { useTable } from "react-table";
 import Wrapper from "../assets/wrappers/Table";
 import { useAppContext } from "../context/appContext";
+import Loading from "./Loading";
 
 const Table = ({ columns, data }) => {
   // Use the useTable Hook to send the columns and data to build the table
@@ -16,7 +17,11 @@ const Table = ({ columns, data }) => {
     data,
   });
 
-  const { totalDevices } = useAppContext(); //get state from app context store
+  const { isLoading, totalDevices } = useAppContext(); //get state from app context store
+
+  if (isLoading) {
+    return <Loading center />;
+  }
   if (totalDevices === 0) {
     return (
       <>
