@@ -69,17 +69,7 @@ const Device = () => {
     // eslint-disable-next-line 
     []
   );
-  if (totalDevices === 0) {
-    return (
-      <>
-        <h2>No devices to display...</h2>
-        <button
-        className="btn btn-hero btn-primary">
-          Add Device
-        </button>
-      </>
-    );
-  }
+
   return (
     <>
     <ModalForm modalIsOpen={showModal}>

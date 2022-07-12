@@ -1,6 +1,7 @@
 import React from "react";
 import { useTable } from "react-table";
 import Wrapper from "../assets/wrappers/Table";
+import { useAppContext } from "../context/appContext";
 
 const Table = ({ columns, data }) => {
   // Use the useTable Hook to send the columns and data to build the table
@@ -14,11 +15,21 @@ const Table = ({ columns, data }) => {
     columns,
     data,
   });
+
+  const { totalDevices } = useAppContext(); //get state from app context store
+  if (totalDevices === 0) {
+    return (
+      <>
+        <h2>No devices to display...</h2>
+      </>
+    );
+  }
   /* 
     Render the UI for your table
     - react-table doesn't have UI, it's headless. We just need to put the react-table props from the Hooks, and it will do its magic automatically
   */
   // Render the UI for your table
+
   return (
     <Wrapper>
     <table {...getTableProps()}>
