@@ -14,7 +14,7 @@ const Device = () => {
   useEffect(() => {
     getDevices(dispatch, {page, search, searchStatus, sort});
     // eslint-disable-next-line
-  }, [page, search, searchStatus, sort, editDeviceId]);
+  }, [page, search, searchStatus, sort]);
 
   const utcOffset = React.useMemo(
     () => getUTCOffsetFromTimezoneString(user.timezone),
