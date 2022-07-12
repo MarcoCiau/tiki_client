@@ -5,7 +5,7 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import Wrapper from "../assets/wrappers/TableAction";
 import { useAppContext } from "../context/appContext";
-import { setEditDevice } from "../context/actions";
+import { deleteDevice, setEditDevice } from "../context/actions";
 
 const TableActions = ({_id}) => {
   const { dispatch } = useAppContext();
@@ -13,14 +13,11 @@ const TableActions = ({_id}) => {
     <Wrapper>
       <div className="actions">
         <div className="action">
-          {/* <NavLink to="/device" onClick={() => setEditDevice(dispatch, _id)}>
-            <span className="icon">{<FaEdit />}</span>
-          </NavLink> */}
           <span className="icon" onClick={() => setEditDevice(dispatch, _id)}>{<FaEdit />}</span>
         </div>
 
         <div className="action">
-          <NavLink to="/device" onClick={() => console.log("delete", _id)}>
+          <NavLink to="/device" onClick={() => deleteDevice(dispatch, _id)}>
             <span className="icon">{<AiTwotoneDelete />}</span>
           </NavLink>
         </div>

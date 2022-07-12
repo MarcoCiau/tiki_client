@@ -149,9 +149,9 @@ export const handleClearFormValues = (dispatch) => {
   dispatch({ type: actionTypes.HANDLE_CLEAR_FORM_VALUES });
 };
 
-export const getDevices = async (dispatch, searchQuery) => {
+export const getDevices = async (dispatch, searchQuery={}) => {
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
-  const { page, search, searchStatus, sort } = searchQuery;
+  const { page=1, search="", searchStatus="", sort="" } = searchQuery;
   let url = `/device?page=${page}&status=${searchStatus}&sort=${sort}`;
   if (search) {
     url += `search=${search}`;
@@ -250,6 +250,16 @@ export const setEditDevice = (dispatch, deviceId) => {
   });
 };
 
+export const deleteDevice = async (dispatch, deviceId) => {
+  dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
+  try {
+    await authFetch.delete(`/device/${deviceId}`);
+    getDevices(dispatch);
+  } catch (error) {
+    logoutUser(dispatch);
+  }
+};
+
 export const editDevice = async (dispatch, device) => {
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
   const { _id: deviceId, ...deviceToBeUpdated } = device;
@@ -257,6 +267,7 @@ export const editDevice = async (dispatch, device) => {
     await authFetch.put(`/device/${deviceId}`, { ...deviceToBeUpdated });
     dispatch({ type: actionTypes.EDIT_JOB_SUCCESS });
     dispatch({ type: actionTypes.HANDLE_CLEAR_FORM_VALUES }); //clear form values
+    getDevices(dispatch);
   } catch (error) {
     if (error.response.status === 401) return; //error handled by axios interceptor
     dispatch({
