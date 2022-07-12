@@ -25,6 +25,7 @@ const reducer = (state, action) => {
         return {
           ...state,
           showModal: false,
+          isEditing: false,
           editDeviceId: "",
           editDeviceObj: {},
         };
