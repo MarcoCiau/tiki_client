@@ -1,4 +1,4 @@
-const FormRowSelect = ({ labelText, name, value, handleChange, list }) => {
+const FormRowSelect = ({ labelText, name, value, handleChange, list, values }) => {
     return (
       <div className='form-row'>
         <label htmlFor={name} className='form-label'>
@@ -12,7 +12,7 @@ const FormRowSelect = ({ labelText, name, value, handleChange, list }) => {
         >
           {list.map((itemValue, index) => {
             return (
-              <option key={index} value={itemValue}>
+              <option key={index} value={values[index] || itemValue}>
                 {itemValue}
               </option>
             )
