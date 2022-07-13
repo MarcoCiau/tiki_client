@@ -25,7 +25,6 @@ const initialState = {
   editJobId: '',
   position: '',
   company: '',
-  statusOptions: ['unknow', 'connected', 'disconnected'],
   status: 'unknow',
   devices: [],
   totalDevices : 0,
@@ -36,6 +35,8 @@ const initialState = {
   search: '',
   searchStatus: 'all',
   sort: 'latest',
+  statusOptions: ['unknow', 'connected', 'disconnected'],
+  deviceTypeOptions: ['Single Phase', 'Three Phase'],
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 };
 
