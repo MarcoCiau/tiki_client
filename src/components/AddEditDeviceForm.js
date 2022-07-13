@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { FormRow, Alert } from "./";
+import { FormRow, FormRowSelect, Alert } from "./";
 import { useAppContext } from "../context/appContext"
 import Wrapper from "../assets/wrappers/AddEditDeviceForm";
 import { displayAlert, closeModal, createDevice, editDevice } from "../context/actions";
 
 const AddEditDeviceForm = () => {
-  const { dispatch, showAlert, isLoading, isEditing, editDeviceObj } = useAppContext();
+  const { dispatch, deviceTypeOptions, showAlert, isLoading, isEditing, editDeviceObj } = useAppContext();
 
   const [device, setDevice] = useState({
     name: editDeviceObj.name,
     mac: editDeviceObj.mac,
     token: editDeviceObj.token,
-    type: 1
+    type: editDeviceObj.type
   });
   const { name = "", mac = "", token = "", type=1 } = device;
 
@@ -31,7 +31,6 @@ const AddEditDeviceForm = () => {
       displayAlert(dispatch);
       return;
     }
-    console.log(device);
     if(isEditing) {
       editDevice(dispatch, {_id: editDeviceObj._id, name, mac, token, type});
       setDevice({
@@ -43,7 +42,8 @@ const AddEditDeviceForm = () => {
       closeModal(dispatch);
       return;
     }
-    createDevice(dispatch, {name, mac, type});
+    const typeInt = parseInt(type, 10);
+    createDevice(dispatch, {name, mac, type:typeInt});
     setDevice({
       name: "",
       mac: "",
@@ -83,6 +83,15 @@ const AddEditDeviceForm = () => {
             name="mac"
             value={mac}
             handleChange={handleChange}
+          />
+
+          <FormRowSelect
+            labelText='type'
+            name='type'
+            value={type}
+            handleChange={handleChange}
+            values={[1, 2]}
+            list={deviceTypeOptions}
           />
 
           {

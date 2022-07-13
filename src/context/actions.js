@@ -175,7 +175,7 @@ export const getDevices = async (dispatch, searchQuery={}) => {
 
 export const createDevice = async (dispatch, job) => {
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
-  const { name="", mac="", type="1" } = job;
+  const { name="", mac="", type=1 } = job;
   try {
     await authFetch.post("/device" , {name, mac, type});
     dispatch({ type: actionTypes.CREATE_DEVICE_SUCCESS });
