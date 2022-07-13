@@ -28,6 +28,10 @@ const Device = () => {
         accessor: "name",
       },
       {
+        Header: "Type",
+        accessor: "type",
+      },
+      {
         Header: "MAC Address",
         accessor: "mac",
       },
