@@ -5,21 +5,22 @@ import { StatsContainer, ChartsContainer } from "../../components/";
 import Loading from "../../components/Loading";
 
 const Stats = () => {
-  const { dispatch, isLoading, monthlyApplications } = useAppContext();
+  const { dispatch, isLoading, stats } = useAppContext();
 
-  // useEffect(() => {
-  //   showStats(dispatch);
-  //   // eslint-disable-next-line
-  // }, []);
+  useEffect(() => {
+    showStats(dispatch);
+    // eslint-disable-next-line
+  }, []);
 
-  // if (isLoading) {
-  //   return <Loading center />;
-  // }
+  if (isLoading) {
+    return <Loading center />;
+  }
 
   return (
     <>
       <StatsContainer />
-      {/* {monthlyApplications.length > 0 && <ChartsContainer />} */}
+      {/* <ChartsContainer /> */}
+      {stats.current.length > 0 && <ChartsContainer />}
     </>
   );
 };

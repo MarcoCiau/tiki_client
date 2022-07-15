@@ -1,5 +1,6 @@
 import Alert from "./Alert";
 import BigSidebar from "./BigSidebar";
+import ChartsContainer from "./ChartsContainer";
 import FormRow from "./FormRow";
 import FormRowSelect from "./FormRowSelect";
 import Logo from "./Logo";
@@ -14,6 +15,7 @@ import Table from "./Table";
 export {
   Alert,
   BigSidebar,
+  ChartsContainer,
   FormRow,
   FormRowSelect,
   Logo,

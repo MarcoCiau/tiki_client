@@ -289,14 +289,13 @@ export const deleteJob = async (dispatch, jobId) => {
 };
 
 export const showStats = async (dispatch) => {
-  dispatch({ type: actionTypes.SHOW_STATS_BEGIN });
+  dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
   try {
-    const { data } = await authFetch(`/jobs/stats`);
+    const { data } = await authFetch(`/read?deviceId=62b9d151b8bb9311eb64170d&type=lastHour`);
     dispatch({
       type: actionTypes.SHOW_STATS_SUCCESS,
       payload: {
-        stats: data.defaultStats,
-        monthlyApplications: data.monthlyApplications,
+        stats: data.reads,
       },
     });
   } catch (error) {

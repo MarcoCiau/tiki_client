@@ -19,6 +19,7 @@ const initialState = {
   refreshToken: localStorage.getItem("refreshToken"),
   userLocation: localStorage.getItem('location') || '',
   jobLocation: localStorage.getItem('location') || '',
+  stats: {current:[], voltage:[], activeKwh: []},
   isEditing: false,
   editDeviceId: "",
   editDeviceObj:{},
