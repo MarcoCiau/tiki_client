@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
-
-import BarChart from './BarChart'
 import AreaChart from './AreaChart'
 import { useAppContext } from '../context/appContext'
 import Wrapper from '../assets/wrappers/ChartsContainer'
 
 function ChartsContainer() {
-  const [barChart, setBarChart] = useState(true)
   const { stats: data } = useAppContext()
   return (
     <Wrapper>
-      <h4>Monthly Applications</h4>
-
-      <button type='button' onClick={() => setBarChart(!barChart)}>
-        {barChart ? 'AreaChart' : 'BarChart'}
-      </button>
-      <AreaChart data={data.current}/>
-      <AreaChart data={data.activeKwh}/>
+      <div className='chartContainer'>
+        <AreaChart data={data.current} title={"Amperage"}/>
+        <AreaChart data={data.activeKwh} title={"Energy Consumption"}/>
+      </div>
+      <div className='chartContainer'>
+        <AreaChart data={data.current} title={"Voltage"}/>
+        <AreaChart data={data.activeKwh} title={"Frequency"}/>
+      </div>
     </Wrapper>
   )
 }
