@@ -257,6 +257,7 @@ const reducer = (state, action) => {
           ...state,
           isLoading: false,
           stats: action.payload.stats,
+          overview: action.payload.stats,
         }
     default:
       return state;

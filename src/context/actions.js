@@ -296,6 +296,7 @@ export const showStats = async (dispatch) => {
       type: actionTypes.SHOW_STATS_SUCCESS,
       payload: {
         stats: data.reads,
+        overview: data.overview,
       },
     });
   } catch (error) {

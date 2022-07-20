@@ -4,41 +4,42 @@ import { FaLightbulb } from "react-icons/fa";
 import { ImPower, ImPowerCord } from "react-icons/im";
 import Wrapper from "../assets/wrappers/StatsContainer";
 const StatsContainer = () => {
-  const { stats } = useAppContext();
+  const { overview } = useAppContext();
+  const { lineVoltage=0.00, lineCurrent=0.00, frequency=0.00, pf=0.00, energy=0.00, power=0.00 } = overview;
   const defaultStats = [
     {
       title: "Line Voltage",
-      count: stats.interview || "220 VAC",
+      count: `${lineVoltage} VAC`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Line Current",
-      count: stats.declined || "30 A",
+      count: `${lineCurrent} A`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Line Frequency",
-      count: stats.declined || "60 Hz",
+      count: `${frequency} Hz`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Power Factor",
-      count: stats.pending || "0.99",
+      count: `${pf}`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Active Energy",
-      count: stats.pending || "3 KW",
+      count: `${energy} KWh`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Active Power",
-      count: stats.pending || "10 KWh",
+      count: `${power} KW`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
