@@ -4,42 +4,43 @@ import { FaLightbulb } from "react-icons/fa";
 import { ImPower, ImPowerCord } from "react-icons/im";
 import Wrapper from "../assets/wrappers/StatsContainer";
 const StatsContainer = () => {
-  const { overview } = useAppContext();
-  const { lineVoltage=0.00, lineCurrent=0.00, frequency=0.00, pf=0.00, energy=0.00, power=0.00 } = overview;
+  const { stats } = useAppContext();
+  const { lineVoltage=0.00, lineCurrent=0.00, frequency=0.00, pf=0.00, energy=0.00, power=0.00 } = stats;
   const defaultStats = [
     {
       title: "Line Voltage",
-      count: `${lineVoltage} VAC`,
+      count: `${Math.round(lineVoltage * 100) / 100} VAC`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Line Current",
-      count: `${lineCurrent} A`,
+      count: `${Math.round(lineCurrent * 100) / 100} A`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Line Frequency",
-      count: `${frequency} Hz`,
+      
+      count: `${Math.round(frequency * 100) / 100} Hz`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Power Factor",
-      count: `${pf}`,
+      count: `${Math.round(pf * 100) / 100}`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Active Energy",
-      count: `${energy} KWh`,
+      count: `${Math.round(energy * 100) / 100} KWh`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },
     {
       title: "Active Power",
-      count: `${power} KW`,
+      count: `${Math.round(power * 100) / 100} KW`,
       color: "var(--primary-500)",
       bcg: "#c7e6fc",
     },

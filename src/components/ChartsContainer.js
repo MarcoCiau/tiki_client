@@ -12,7 +12,7 @@ function ChartsContainer() {
         <AreaChart data={data.activeKwh} title={"Energy Consumption"}/>
       </div>
       <div className='chartContainer'>
-        <AreaChart data={data.current} title={"Voltage"}/>
+        <AreaChart data={data.voltage} title={"Voltage"}/>
         <AreaChart data={data.activeKwh} title={"Frequency"}/>
       </div>
     </Wrapper>
