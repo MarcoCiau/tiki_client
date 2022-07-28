@@ -13,7 +13,7 @@ function ChartsContainer() {
       </div>
       <div className='chartContainer'>
         <AreaChart data={data.voltage} title={"Voltage"}/>
-        <AreaChart data={data.activeKwh} title={"Frequency"}/>
+        <AreaChart data={data.frequencyTS} title={"Frequency"}/>
       </div>
     </Wrapper>
   )

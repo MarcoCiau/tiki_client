@@ -19,7 +19,7 @@ const initialState = {
   refreshToken: localStorage.getItem("refreshToken"),
   userLocation: localStorage.getItem("location") || "",
   jobLocation: localStorage.getItem("location") || "",
-  stats: {current: [], voltage: [], activeKwh: [] },
+  stats: {current: [], voltage: [], activeKwh: [], frequencyTS:[] },
   overview: {lineVoltage: 220.56, lineCurrent: 30.99, frequency: 59.70, pf: 0.99, energy: 39.45, power: 10.89, },
   isEditing: false,
   editDeviceId: "",
