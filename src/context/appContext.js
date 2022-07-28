@@ -6,7 +6,6 @@ import reducer from "./reducer";
 const user = localStorage.getItem("user");
 //App State
 const initialState = {
-  stats: {},
   monthlyApplications: [],
   isLoading: false,
   showAlert: false,
