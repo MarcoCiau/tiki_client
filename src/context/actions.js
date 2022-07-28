@@ -158,7 +158,7 @@ export const getDevices = async (dispatch, searchQuery={}) => {
   }
   try {
     const { data } = await authFetch.get(url);
-    const { devices, totalDevices = 1, numOfPages = 1 } = data;
+    const { devices, totalDevices = 0, numOfPages = 1 } = data;
     dispatch({
       type: actionTypes.GET_DEVICES_SUCESS,
       payload: {
@@ -288,10 +288,10 @@ export const deleteJob = async (dispatch, jobId) => {
   }
 };
 
-export const showStats = async (dispatch) => {
+export const showStats = async (dispatch, deviceId) => {
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
   try {
-    const { data } = await authFetch(`/read?deviceId=62b9d151b8bb9311eb64170d&type=lastHour`);
+    const { data } = await authFetch(`/read?deviceId=${deviceId}&type=lastHour`);
     dispatch({
       type: actionTypes.SHOW_STATS_SUCCESS,
       payload: {
