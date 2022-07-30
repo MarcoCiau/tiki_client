@@ -29,7 +29,7 @@ const AreaChartComponent = ({ data, title }) => {
           className="chart"
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="timestamp" tickFormatter={formatXAxis} />
+          <XAxis dataKey="timestamp" tickFormatter={formatXAxis} reversed={true}/>
           <YAxis allowDecimals={true} />
           <Tooltip />
           <Area
