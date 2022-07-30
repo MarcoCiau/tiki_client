@@ -9,7 +9,7 @@ import {
 import Loading from "../../components/Loading";
 
 const Stats = () => {
-  const { dispatch, devices, isLoading, stats, totalDevices } = useAppContext();
+  const { dispatch, devices, isLoading, voltageTimeSeries, totalDevices } = useAppContext();
   const [selectedDeviceId, setSelectedDeviceId] = useState(0);
 
   useEffect(() => {
@@ -50,13 +50,13 @@ const Stats = () => {
         list={listDevices()}
       />
 
-      {Object.keys(stats).length === 0 && (
+      {!voltageTimeSeries && (
         <>
           <p>No data sensors to display.</p>
         </>
       )}
 
-      {Object.keys(stats).length > 0 && (
+      {voltageTimeSeries && (
         <>
           <StatsContainer />
           <ChartsContainer />

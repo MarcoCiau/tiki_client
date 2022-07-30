@@ -256,7 +256,11 @@ const reducer = (state, action) => {
         return {
           ...state,
           isLoading: false,
-          stats: action.payload.stats,
+          voltageTimeSeries : action.payload.stats.voltage,
+          amperageTimeSeries : action.payload.stats.current,
+          energyTimeSeries : action.payload.stats.activeKwh,
+          frequencyTimeSeries : action.payload.stats.frequencyTS,
+          overview: action.payload.overview,
         }
     default:
       return state;

@@ -292,10 +292,19 @@ export const showStats = async (dispatch, deviceId) => {
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
   try {
     const { data } = await authFetch(`/read?deviceId=${deviceId}&type=lastHour`);
+    const { lineVoltage=0, lineCurrent=0, frequency=0, energy=0, power=0, pf=0} = data.reads;
     dispatch({
       type: actionTypes.SHOW_STATS_SUCCESS,
       payload: {
         stats: data.reads,
+        overview : {
+          lineVoltage,
+          lineCurrent,
+          frequency,
+          energy, 
+          power,
+          pf
+        }
       },
     });
   } catch (error) {
