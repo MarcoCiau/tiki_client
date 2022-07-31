@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 const Landing = () => {
   return (
     <Wrapper>
-      <nav>
-        <Logo />
-      </nav>
       <div className="container page">
         {/* info */}
         <div className="info">
