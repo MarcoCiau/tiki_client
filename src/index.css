@@ -14,15 +14,15 @@ html {
 :root {
   /* colors */
   --primary-50: #e0fcff;
-  --primary-100: #bef8fd;
-  --primary-200: #87eaf2;
-  --primary-300: #54d1db;
-  --primary-400: #38bec9;
-  --primary-500: #2cb1bc;
-  --primary-600: #14919b;
-  --primary-700: #0e7c86;
-  --primary-800: #0a6c74;
-  --primary-900: #044e54;
+  --primary-100: #cae2fa;
+  --primary-200: #a9d1f8;
+  --primary-300: #0e75db;
+  --primary-400: #0e75db;
+  --primary-500: #2f82d6;
+  --primary-600: #5b88b6;
+  --primary-700: #4a86c3;
+  --primary-800: #3189e0;
+  --primary-900: #0e75db;
 
   /* grey */
   --grey-50: #f0f4f8;
@@ -200,8 +200,8 @@ ul {
   background: var(--red-light);
 }
 .alert-success {
-  color: var(--green-dark);
-  background: var(--green-light);
+  color: var(--white);
+  background: var(--primary-500);
 }
 /* form */
 
