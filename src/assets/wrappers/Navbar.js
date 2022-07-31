@@ -62,10 +62,7 @@ const Wrapper = styled.nav`
     text-transform: capitalize;
     cursor: pointer;
   }
-  .logo-text {
-    display: none;
-    margin: 0;
-  }
+
   @media (min-width: 992px) {
     position: sticky;
     top: 0;
@@ -77,9 +74,6 @@ const Wrapper = styled.nav`
     }
     .logo {
       display: none;
-    }
-    .logo-text {
-      display: block;
     }
   }
 `
