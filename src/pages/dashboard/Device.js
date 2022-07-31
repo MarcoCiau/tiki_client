@@ -8,7 +8,7 @@ import { getUTCOffsetFromTimezoneString } from "../../util/timezoneList";
 import SearchContainer from "../../components/SearchContainer";
 import ModalForm from "../../components/ModalForm";
 import AddEditDeviceForm from "../../components/AddEditDeviceForm";
-
+import Wrapper from "../../assets/wrappers/DashboardFormPage";
 const Device = () => {
   const { dispatch, user, devices, deviceTypeOptions, page, search, searchStatus, sort, showModal } = useAppContext(); //get state from app context store
   useEffect(() => {
@@ -78,13 +78,14 @@ const Device = () => {
   );
 
   return (
-    <>
+    <Wrapper>
+    <h3>devices </h3>
     <ModalForm modalIsOpen={showModal}>
       <AddEditDeviceForm />
     </ModalForm>
       <SearchContainer />
       <Table columns={columns} data={devices} />
-    </>
+    </Wrapper>
   );
 };
 

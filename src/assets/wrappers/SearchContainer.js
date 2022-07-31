@@ -1,6 +1,7 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.section`
+  margin-bottom: 2rem;
   .form {
     width: 100%;
     max-width: 100%;
@@ -27,11 +28,10 @@ const Wrapper = styled.section`
     margin-top: 1rem;
   }
 
-  .icon-container{
+  .icon-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    
   }
   @media (min-width: 768px) {
     .form-center {
@@ -46,6 +46,6 @@ const Wrapper = styled.section`
       margin-top: 0;
     }
   }
-`
+`;
 
-export default Wrapper
+export default Wrapper;
