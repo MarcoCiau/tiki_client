@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import NavLinks from "./NavLinks";
 import PageActions from "./PageActions";
 import SmallSidebar from "./SmallSidebar";
+import Realtime from "./Socket";
 import StatItem from "./StatItem";
 import StatsContainer from "./StatsContainer";
 import Table from "./Table";
@@ -22,6 +23,7 @@ export {
   Navbar,
   NavLinks,
   SmallSidebar,
+  Realtime,
   PageActions,
   StatItem,
   StatsContainer,
