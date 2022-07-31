@@ -35,8 +35,8 @@ const AreaChartComponent = ({ data, title }) => {
           <Area
             type="monotone"
             dataKey="value"
-            stroke="#2cb1bc"
-            fill="#bef8fd"
+            stroke="#a9d1f8"
+            fill="#a0c9f2"
           />
         </AreaChart>
       </ResponsiveContainer>
