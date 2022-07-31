@@ -17,18 +17,18 @@ const reducer = (state, action) => {
         alertText: "",
       };
     case actionTypes.SHOW_MODAL:
-        return {
-          ...state,
-          showModal: true,
-        };
+      return {
+        ...state,
+        showModal: true,
+      };
     case actionTypes.CLOSE_MODAL:
-        return {
-          ...state,
-          showModal: false,
-          isEditing: false,
-          editDeviceId: "",
-          editDeviceObj: {},
-        };
+      return {
+        ...state,
+        showModal: false,
+        isEditing: false,
+        editDeviceId: "",
+        editDeviceObj: {},
+      };
     case actionTypes.TOGGLE_SIDEBAR:
       return {
         ...state,
@@ -37,9 +37,9 @@ const reducer = (state, action) => {
     case actionTypes.CHANGE_PAGE:
       return {
         ...state,
-        page: action.payload.page
+        page: action.payload.page,
       };
-      case actionTypes.EXECUTE_NEW_REQUEST:
+    case actionTypes.EXECUTE_NEW_REQUEST:
       return {
         ...state,
         isLoading: true,
@@ -125,58 +125,58 @@ const reducer = (state, action) => {
         isLoading: false,
         totalDevices: action.payload.totalDevices,
         numOfPages: action.payload.numOfPages,
-      }
+      };
     case actionTypes.HANDLE_FORM_INPUT_CHANGE:
       return {
         ...state,
         page: 1,
-        [action.payload.name] : action.payload.value
-      }
+        [action.payload.name]: action.payload.value,
+      };
     case actionTypes.HANDLE_CLEAR_FORM_VALUES:
       return {
         ...state,
         isEditing: false,
         editDeviceId: "",
         editDeviceObj: {},
-      }
-      case actionTypes.CREATE_JOB_BEGIN:
-        return {
-          ...state,
-          isLoading: true,
-        }
-      case actionTypes.CREATE_JOB_SUCCESS:
-        return {
-          ...state,
-          isLoading: false,
-          showAlert: true,
-          alertType: 'success',
-          alertText: 'New Job Created!',
-        }
-      case actionTypes.CREATE_JOB_ERROR:
-        return {
-          ...state,
-          isLoading: false,
-          showAlert: true,
-          alertType: 'danger',
-          alertText: action.payload.msg,
-        }
-        case actionTypes.CREATE_DEVICE_SUCCESS:
-          return {
-            ...state,
-            isLoading: false,
-            showAlert: true,
-            alertType: 'success',
-            alertText: 'New Device Created!',
-          }
-        case actionTypes.CREATE_DEVICE_ERROR:
-          return {
-            ...state,
-            isLoading: false,
-            showAlert: true,
-            alertType: 'danger',
-            alertText: action.payload.msg,
-          }
-      case actionTypes.GET_JOBS_BEGIN:
+      };
+    case actionTypes.CREATE_JOB_BEGIN:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actionTypes.CREATE_JOB_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: "success",
+        alertText: "New Job Created!",
+      };
+    case actionTypes.CREATE_JOB_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: "danger",
+        alertText: action.payload.msg,
+      };
+    case actionTypes.CREATE_DEVICE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: "success",
+        alertText: "New Device Created!",
+      };
+    case actionTypes.CREATE_DEVICE_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: "danger",
+        alertText: action.payload.msg,
+      };
+    case actionTypes.GET_JOBS_BEGIN:
       return {
         ...state,
         isLoading: true,
@@ -193,75 +193,124 @@ const reducer = (state, action) => {
     case actionTypes.GET_JOB_CLEAR_FILTERS:
       return {
         ...state,
-        search: '',
-        searchStatus: 'all',
-        searchType: 'all',
-        sort: 'latest',
+        search: "",
+        searchStatus: "all",
+        searchType: "all",
+        sort: "latest",
       };
 
     case actionTypes.SET_EDIT_DEVICE:
-    const deviceEdit = state.devices.find(({_id}) => _id === action.payload);
+      const deviceEdit = state.devices.find(
+        ({ _id }) => _id === action.payload
+      );
       return {
         ...state,
         isEditing: true,
         showModal: true,
         editDeviceId: action.payload,
         editDeviceObj: deviceEdit,
-      }
+      };
     case actionTypes.EDIT_DEVICE_SUCCESS:
       return {
         ...state,
         isLoading: false,
         showAlert: true,
-        alertType: 'success',
-        alertText: 'Device Updated!',
-      }
+        alertType: "success",
+        alertText: "Device Updated!",
+      };
     case actionTypes.EDIT_DEVICE_ERROR:
       return {
         ...state,
         isLoading: false,
         showAlert: true,
-        alertType: 'danger',
+        alertType: "danger",
         alertText: action.payload.msg,
-      }
+      };
     case actionTypes.DELETE_JOB_BEGIN:
     case actionTypes.EDIT_JOB_BEGIN:
       return {
         ...state,
         isLoading: true,
-      }
+      };
     case actionTypes.EDIT_JOB_SUCCESS:
       return {
         ...state,
         isLoading: false,
         showAlert: true,
-        alertType: 'success',
-        alertText: 'Job Updated!',
-      }
+        alertType: "success",
+        alertText: "Job Updated!",
+      };
     case actionTypes.EDIT_JOB_ERROR:
       return {
         ...state,
         isLoading: false,
         showAlert: true,
-        alertType: 'danger',
+        alertType: "danger",
         alertText: action.payload.msg,
-      }
+      };
     case actionTypes.SHOW_STATS_BEGIN:
       return {
         ...state,
         isLoading: true,
         showAlert: false,
+      };
+    case actionTypes.SHOW_STATS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        voltageTimeSeries: action.payload.stats.voltage,
+        amperageTimeSeries: action.payload.stats.current,
+        energyTimeSeries: action.payload.stats.activeKwh,
+        frequencyTimeSeries: action.payload.stats.frequencyTS,
+        overview: action.payload.overview,
+      };
+    case actionTypes.UPDATE_STATS_REALTIME:
+
+      if (state.voltageTimeSeries.length > 50) {
+        state.voltageTimeSeries.pop();
       }
-      case actionTypes.SHOW_STATS_SUCCESS:
-        return {
-          ...state,
-          isLoading: false,
-          voltageTimeSeries : action.payload.stats.voltage,
-          amperageTimeSeries : action.payload.stats.current,
-          energyTimeSeries : action.payload.stats.activeKwh,
-          frequencyTimeSeries : action.payload.stats.frequencyTS,
-          overview: action.payload.overview,
-        }
+      if (state.amperageTimeSeries.length > 50) {
+        state.amperageTimeSeries.pop();
+      }
+      if (state.energyTimeSeries.length > 50) {
+        state.energyTimeSeries.pop();
+      }
+      if (state.frequencyTimeSeries.length > 50) {
+        state.frequencyTimeSeries.pop();
+      }
+      return {
+        ...state,
+        isLoading: false,
+        voltageTimeSeries: [
+          {
+            timestamp: new Date(action.payload.timestamp * 1000),
+            value: action.payload.overview.lineVoltage,
+          },
+          ...state.voltageTimeSeries,
+        ],
+        amperageTimeSeries: [
+          {
+            timestamp: new Date(action.payload.timestamp * 1000),
+            value: action.payload.overview.lineCurrent,
+          },
+          ...state.amperageTimeSeries,
+        ],
+        energyTimeSeries: [
+          {
+            timestamp: new Date(action.payload.timestamp * 1000),
+            value: action.payload.overview.energy,
+          },
+          ...state.energyTimeSeries,
+        ],
+        frequencyTimeSeries: [
+          {
+            timestamp: new Date(action.payload.timestamp * 1000),
+            value: action.payload.overview.frequency,
+          },
+          ...state.frequencyTimeSeries,
+        ],
+        overview: action.payload.overview,
+      };
     default:
       return state;
   }

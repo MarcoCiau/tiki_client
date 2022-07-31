@@ -313,6 +313,24 @@ export const showStats = async (dispatch, deviceId) => {
   clearAlert(dispatch);
 };
 
+export const updateStats = (dispatch, payload) => {
+  const { timestamp, lineVoltage=0, lineCurrent=0, frequency=0, energy=0, power=0, pf=0} = payload;
+  dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
+  dispatch({
+    type: actionTypes.UPDATE_STATS_REALTIME,
+    payload: {
+      overview : {
+        lineVoltage,
+        lineCurrent,
+        frequency,
+        energy, 
+        power,
+        pf
+      },
+      timestamp
+    },
+  });
+}
 export const clearFilters = (dispatch) => {
   dispatch({ type: actionTypes.GET_JOB_CLEAR_FILTERS });
 };

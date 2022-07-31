@@ -38,4 +38,6 @@ export const actionTypes = {
   EDIT_JOB_ERROR: "[edit job] EDIT JOB FAILED",
   SHOW_STATS_BEGIN: "[get job stats]SHOW_STATS_BEGIN",
   SHOW_STATS_SUCCESS: "[get job stats]SHOW_STATS_SUCCESS",
+  UPDATE_STATS_REALTIME: "[update stats time series stats]UPDATE STATS INFO via SOCKET.IO",
+
 };
