@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Error, Landing, Register } from "../pages/index";
 import {
-  AllJobs,
   Device,
   Profile,
   SharedLayout,
@@ -21,7 +20,6 @@ export const AppRouter = () => {
           }
         >
           <Route index element={<Stats />} />
-          <Route path="all-jobs" element={<AllJobs />} />
           <Route path="device" element={<Device />} />
           <Route path="profile" element={<Profile />} />
         </Route>
