@@ -271,5 +271,5 @@ export const setSocketIOConnected = (dispatch, connected=false) => {
   });
 }
 export const clearFilters = (dispatch) => {
-  dispatch({ type: actionTypes.GET_JOB_CLEAR_FILTERS });
+  dispatch({ type: actionTypes.SEARCH_CLEAR_FILTERS });
 };

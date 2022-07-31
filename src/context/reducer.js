@@ -47,6 +47,14 @@ const reducer = (state, action) => {
         editDeviceId: "",
         editDeviceObj: {},
       };
+    case actionTypes.SEARCH_CLEAR_FILTERS:
+      return {
+        ...state,
+        search: "",
+        searchStatus: "all",
+        searchType: "all",
+        sort: "latest",
+      };
     case actionTypes.EXECUTE_NEW_REQUEST:
       return {
         ...state,
