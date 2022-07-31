@@ -5,6 +5,7 @@ import {
   StatsContainer,
   ChartsContainer,
   FormRowSelect,
+  Realtime
 } from "../../components/";
 import Loading from "../../components/Loading";
 
@@ -58,6 +59,7 @@ const Stats = () => {
 
       {voltageTimeSeries && (
         <>
+          <Realtime></Realtime>
           <StatsContainer />
           <ChartsContainer />
         </>
