@@ -69,7 +69,9 @@ const Wrapper = styled.nav`
   @media (min-width: 992px) {
     position: sticky;
     top: 0;
-
+    .toggle-btn {
+      display: none;
+    }
     .nav-center {
       width: 90%;
     }
