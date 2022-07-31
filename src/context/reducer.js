@@ -34,10 +34,18 @@ const reducer = (state, action) => {
         ...state,
         showSidebar: !state.showSidebar,
       };
-    case actionTypes.CHANGE_PAGE:
+    case actionTypes.HANDLE_FORM_INPUT_CHANGE:
       return {
         ...state,
-        page: action.payload.page,
+        page: 1,
+        [action.payload.name]: action.payload.value,
+      };
+    case actionTypes.HANDLE_CLEAR_FORM_VALUES:
+      return {
+        ...state,
+        isEditing: false,
+        editDeviceId: "",
+        editDeviceObj: {},
       };
     case actionTypes.EXECUTE_NEW_REQUEST:
       return {
@@ -93,11 +101,6 @@ const reducer = (state, action) => {
         userLocation: "",
         jobLocation: "",
       };
-    case actionTypes.UPDATE_USER_BEGIN:
-      return {
-        ...state,
-        isLoading: true,
-      };
     case actionTypes.UPDATE_USER_SUCCESS:
       return {
         ...state,
@@ -126,40 +129,7 @@ const reducer = (state, action) => {
         totalDevices: action.payload.totalDevices,
         numOfPages: action.payload.numOfPages,
       };
-    case actionTypes.HANDLE_FORM_INPUT_CHANGE:
-      return {
-        ...state,
-        page: 1,
-        [action.payload.name]: action.payload.value,
-      };
-    case actionTypes.HANDLE_CLEAR_FORM_VALUES:
-      return {
-        ...state,
-        isEditing: false,
-        editDeviceId: "",
-        editDeviceObj: {},
-      };
-    case actionTypes.CREATE_JOB_BEGIN:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case actionTypes.CREATE_JOB_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        showAlert: true,
-        alertType: "success",
-        alertText: "New Job Created!",
-      };
-    case actionTypes.CREATE_JOB_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        showAlert: true,
-        alertType: "danger",
-        alertText: action.payload.msg,
-      };
+
     case actionTypes.CREATE_DEVICE_SUCCESS:
       return {
         ...state,
@@ -176,29 +146,6 @@ const reducer = (state, action) => {
         alertType: "danger",
         alertText: action.payload.msg,
       };
-    case actionTypes.GET_JOBS_BEGIN:
-      return {
-        ...state,
-        isLoading: true,
-        showAlert: false,
-      };
-    case actionTypes.GET_JOBS_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        jobs: action.payload.jobs,
-        totalJobs: action.payload.totalJobs,
-        numOfPages: action.payload.numOfPages,
-      };
-    case actionTypes.GET_JOB_CLEAR_FILTERS:
-      return {
-        ...state,
-        search: "",
-        searchStatus: "all",
-        searchType: "all",
-        sort: "latest",
-      };
-
     case actionTypes.SET_EDIT_DEVICE:
       const deviceEdit = state.devices.find(
         ({ _id }) => _id === action.payload
@@ -226,28 +173,7 @@ const reducer = (state, action) => {
         alertType: "danger",
         alertText: action.payload.msg,
       };
-    case actionTypes.DELETE_JOB_BEGIN:
-    case actionTypes.EDIT_JOB_BEGIN:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case actionTypes.EDIT_JOB_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        showAlert: true,
-        alertType: "success",
-        alertText: "Job Updated!",
-      };
-    case actionTypes.EDIT_JOB_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        showAlert: true,
-        alertType: "danger",
-        alertText: action.payload.msg,
-      };
+
     case actionTypes.SHOW_STATS_BEGIN:
       return {
         ...state,
@@ -265,7 +191,6 @@ const reducer = (state, action) => {
         overview: action.payload.overview,
       };
     case actionTypes.UPDATE_STATS_REALTIME:
-
       if (state.voltageTimeSeries.length > 50) {
         state.voltageTimeSeries.pop();
       }

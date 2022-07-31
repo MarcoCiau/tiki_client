@@ -29,12 +29,6 @@ export const toggleSidebar = (dispatch) => {
   dispatch({ type: actionTypes.TOGGLE_SIDEBAR });
 };
 
-export const changePage = (dispatch, page) => {
-  dispatch({
-    type: actionTypes.CHANGE_PAGE,
-    payload: { page },
-  });
-};
 
 export const registerUser = async (currentUser, dispatch) => {
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
@@ -189,60 +183,6 @@ export const createDevice = async (dispatch, job) => {
   clearAlert(dispatch);
 };
 
-//TODO:delete here
-export const createJob = async (
-  dispatch,
-  position,
-  company,
-  jobLocation,
-  jobType,
-  status
-) => {
-  dispatch({ type: actionTypes.CREATE_JOB_BEGIN });
-  try {
-    await authFetch.post("/jobs", {
-      company,
-      position,
-      jobLocation,
-      jobType,
-      status,
-    });
-    dispatch({ type: actionTypes.CREATE_JOB_SUCCESS });
-    dispatch({ type: actionTypes.HANDLE_CLEAR_FORM_VALUES }); //clear form values
-  } catch (error) {
-    if (error.response.status === 401) return;
-    dispatch({
-      type: actionTypes.CREATE_JOB_ERROR,
-      payload: { msg: error.response.data.msg },
-    });
-  }
-  clearAlert(dispatch);
-};
-
-export const getJobs = async (dispatch, searchQuery) => {
-  dispatch({ type: actionTypes.GET_JOBS_BEGIN });
-  const { page, search, searchStatus, searchType, sort } = searchQuery;
-  let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
-  if (search) {
-    url += `search=${search}`;
-  }
-  try {
-    const { data } = await authFetch.get(url);
-    const { jobs, totalJobs, numOfPages } = data;
-    dispatch({
-      type: actionTypes.GET_JOBS_SUCCESS,
-      payload: {
-        jobs,
-        totalJobs,
-        numOfPages,
-      },
-    });
-  } catch (error) {
-    logoutUser(dispatch);
-  }
-  clearAlert(dispatch);
-};
-
 export const setEditDevice = (dispatch, deviceId) => {
   dispatch({
     type: actionTypes.SET_EDIT_DEVICE,
@@ -278,15 +218,7 @@ export const editDevice = async (dispatch, device) => {
   clearAlert(dispatch);
 };
 
-export const deleteJob = async (dispatch, jobId) => {
-  dispatch({ type: actionTypes.DELETE_JOB_BEGIN });
-  try {
-    await authFetch.delete(`/jobs/${jobId}`);
-    getJobs(dispatch);
-  } catch (error) {
-    logoutUser(dispatch);
-  }
-};
+
 
 export const showStats = async (dispatch, deviceId) => {
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
