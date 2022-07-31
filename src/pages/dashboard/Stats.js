@@ -5,22 +5,27 @@ import {
   StatsContainer,
   ChartsContainer,
   FormRowSelect,
-  Realtime
+  Realtime,
 } from "../../components/";
 import Loading from "../../components/Loading";
 
 const Stats = () => {
-  const { dispatch, devices, isLoading, voltageTimeSeries, totalDevices } = useAppContext();
+  const { dispatch, devices, isLoading, voltageTimeSeries, totalDevices } =
+    useAppContext();
   const [selectedDeviceId, setSelectedDeviceId] = useState(0);
 
   useEffect(() => {
-    if (devices.length > 0) showStats(dispatch, devices[0]._id);
+    const asyncTask = async () => {
+      if (totalDevices === 0) await getDevices(dispatch);
+      if (devices.length > 0) await showStats(dispatch, devices[0]._id);
+    };
+    asyncTask().catch(console.error);
   }, [totalDevices]);
 
   if (isLoading) {
     return <Loading center />;
   }
-  if (totalDevices === 0 && !isLoading) {
+  if (totalDevices === 0) {
     return (
       <>
         <h2>No devices to display...</h2>
