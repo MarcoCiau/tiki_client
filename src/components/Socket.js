@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
-import { updateStats } from "../context/actions";
+import { setSocketIOConnected, updateStats } from "../context/actions";
 import { useAppContext } from "../context/appContext";
 
 const Realtime = () => {
-  const {
-    dispatch,
-  } = useAppContext();
+  const { dispatch } = useAppContext();
 
   let updatedStats = {};
   useEffect(() => {
     const socket = io("http://localhost:4000");
     socket.on("connect", () => {
+      setSocketIOConnected(dispatch, true);
       console.log("Connected Socket");
       socket.emit("room", "abc123");
     });
 
     socket.on("disconnect", () => {
+      setSocketIOConnected(dispatch, false);
       console.log("disconnected Socket");
     });
 
@@ -30,7 +30,7 @@ const Realtime = () => {
         energy,
         lineVoltage,
         currentVoltage,
-        timestamp
+        timestamp,
       } = payload;
 
       updatedStats = {
@@ -41,13 +41,15 @@ const Realtime = () => {
         power,
         energy,
         lineVoltage,
-        currentVoltage
+        currentVoltage,
       };
 
       updateStats(dispatch, payload);
     });
 
     return () => {
+      setSocketIOConnected(dispatch, false);
+      socket.disconnect();
       socket.off("connect");
       socket.off("disconnect");
       socket.off("pong");
@@ -56,10 +58,7 @@ const Realtime = () => {
     // eslint-disable-next-line
   }, []);
 
-  return (
-    <>
-    </>
-  );
+  return <></>;
 };
 
 export default Realtime;
