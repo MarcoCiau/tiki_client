@@ -1,6 +1,16 @@
-import logo from '../assets/images/logo.svg';
-const Logo = () => {
-  return <img src={logo} alt="tiki - iot platform logo" className="logo" />
-}
+import logo from "../assets/images/logo.png";
+import Wrapper from "../assets/wrappers/Logo";
 
-export default Logo
+const Logo = () => {
+  return (
+    <Wrapper>
+      <img
+        src={logo}
+        alt="tiki - iot platform logo"
+        className="logo-img"
+      />
+    </Wrapper>
+  );
+};
+
+export default Logo;
