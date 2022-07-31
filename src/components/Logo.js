@@ -7,7 +7,7 @@ const Logo = () => {
       <img
         src={logo}
         alt="tiki - iot platform logo"
-        className="logo-img"
+        className="logo logo-img"
       />
     </Wrapper>
   );

@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
 const Wrapper = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   .logo-img {
-    width: 50px;
+    width: 55px;
+    margin-top : 20px;
     margin-right: 10px;
     margin-bottom: 0.6rem;
   }
