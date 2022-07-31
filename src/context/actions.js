@@ -263,6 +263,13 @@ export const updateStats = (dispatch, payload) => {
     },
   });
 }
+
+export const setSocketIOConnected = (dispatch, connected=false) => {
+  dispatch({
+    type: actionTypes.SET_SOCKET_CONNECTED,
+    payload: connected,
+  });
+}
 export const clearFilters = (dispatch) => {
   dispatch({ type: actionTypes.GET_JOB_CLEAR_FILTERS });
 };

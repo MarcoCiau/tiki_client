@@ -42,6 +42,7 @@ const initialState = {
   statusOptions: ["unknow", "connected", "disconnected"],
   deviceTypeOptions: ["Single Phase", "Three Phase"],
   sortOptions: ["latest", "oldest", "a-z", "z-a"],
+  socketIsConnected: false,
 };
 
 //creating a global context

@@ -29,4 +29,5 @@ export const actionTypes = {
   SHOW_STATS_SUCCESS: "[get job stats]SHOW_STATS_SUCCESS",
   UPDATE_STATS_REALTIME: "[update stats time series stats]UPDATE STATS INFO via SOCKET.IO",
 
+  SET_SOCKET_CONNECTED: "[Socket IO] SET SOCKET IO AS CONNECTED"
 };

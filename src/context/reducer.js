@@ -236,6 +236,11 @@ const reducer = (state, action) => {
         ],
         overview: action.payload.overview,
       };
+    case actionTypes.SET_SOCKET_CONNECTED:
+      return {
+        ...state,
+        socketIsConnected: action.payload,
+      };
     default:
       return state;
   }
