@@ -8,9 +8,9 @@ import { displayAlert, registerUser, loginUser } from "../context/actions";
 
 const initialState = {
   name: "",
-  email: "",
-  password: "",
-  isMember: false,
+  email: "testuser3@email.com",
+  password: "qwertyui8",
+  isMember: true,
 };
 // if possible prefer local state
 // global state
