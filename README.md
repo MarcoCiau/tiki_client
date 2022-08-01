@@ -19,5 +19,5 @@ I used the following technologies, dependencies and tools:
 - [React-table](https://www.npmjs.com/package/react-table)
 
 For details on the data models and HTTP API Documentation, visit the backend repo [here](https://github.com/MarcoCiau/tiki).
-## Setup/Depĺoyment
+## Setup - Deployment
 Please follow the instructions [here](/Developer.md) to setup the project for development and to know how to deploy it. 
