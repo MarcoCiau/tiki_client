@@ -270,6 +270,14 @@ export const setSocketIOConnected = (dispatch, connected=false) => {
     payload: connected,
   });
 }
+
+export const setSocketIORoomId = (dispatch, roomId="") => {
+  dispatch({
+    type: actionTypes.SET_SOCKET_ROOM_ID,
+    payload: roomId,
+  });
+}
+
 export const clearFilters = (dispatch) => {
   dispatch({ type: actionTypes.SEARCH_CLEAR_FILTERS });
 };

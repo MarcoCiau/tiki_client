@@ -43,6 +43,7 @@ const initialState = {
   deviceTypeOptions: ["Single Phase", "Three Phase"],
   sortOptions: ["latest", "oldest", "a-z", "z-a"],
   socketIsConnected: false,
+  socketRoomId: 0,
 };
 
 //creating a global context
