@@ -249,6 +249,11 @@ const reducer = (state, action) => {
         ...state,
         socketIsConnected: action.payload,
       };
+    case actionTypes.SET_SOCKET_ROOM_ID:
+      return {
+        ...state,
+        socketRoomId: action.payload,
+      };
     default:
       return state;
   }

@@ -1,5 +1,9 @@
-import { useEffect, useState } from "react";
-import { getDevices, setStatsDevice, showStats } from "../../context/actions";
+import { useEffect } from "react";
+import {
+  getDevices,
+  setSocketIORoomId,
+  showStats,
+} from "../../context/actions";
 import { useAppContext } from "../../context/appContext";
 import {
   StatsContainer,
@@ -10,16 +14,24 @@ import {
 import Loading from "../../components/Loading";
 
 const Stats = () => {
-  const { dispatch, devices, isLoading, voltageTimeSeries, totalDevices } =
-    useAppContext();
-  const [selectedDeviceId, setSelectedDeviceId] = useState(0);
+  const {
+    dispatch,
+    devices,
+    isLoading,
+    voltageTimeSeries,
+    totalDevices,
+    socketRoomId,
+  } = useAppContext();
 
   useEffect(() => {
     const asyncTask = async () => {
       if (totalDevices === 0) await getDevices(dispatch);
-      if (devices.length > 0) await showStats(dispatch, devices[0]._id);
+      if (devices.length > 0) {
+        await showStats(dispatch, devices[socketRoomId]._id);
+      }
     };
     asyncTask().catch(console.error);
+    // eslint-disable-next-line
   }, [totalDevices]);
 
   if (isLoading) {
@@ -36,7 +48,7 @@ const Stats = () => {
   const handleSelectDevice = (e) => {
     e.preventDefault();
     const selectIdx = e.target.selectedIndex;
-    setSelectedDeviceId(selectIdx);
+    setSocketIORoomId(dispatch, selectIdx);
     showStats(dispatch, devices[selectIdx]._id);
   };
 
@@ -51,7 +63,7 @@ const Stats = () => {
       <FormRowSelect
         labelText="Select a Device"
         name="deviceList"
-        value={devices[selectedDeviceId].name}
+        value={devices[socketRoomId].name}
         handleChange={handleSelectDevice}
         list={listDevices()}
       />

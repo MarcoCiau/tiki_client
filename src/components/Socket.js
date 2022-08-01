@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import io from "socket.io-client";
 import { setSocketIOConnected, updateStats } from "../context/actions";
 import { useAppContext } from "../context/appContext";
 
 const Realtime = () => {
-  const { dispatch } = useAppContext();
+  const { dispatch, devices, totalDevices, socketRoomId } = useAppContext();
 
   let updatedStats = {};
   useEffect(() => {
     const socket = io("http://localhost:4000");
+    if (totalDevices === 0) return;
     socket.on("connect", () => {
       setSocketIOConnected(dispatch, true);
       console.log("Connected Socket");
-      socket.emit("room", "abc123");
+      socket.emit("room", devices[socketRoomId]._id);
     });
 
     socket.on("disconnect", () => {
