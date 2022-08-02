@@ -8,7 +8,7 @@ const Realtime = () => {
 
   let updatedStats = {};
   useEffect(() => {
-    const socket = io("http://localhost:4000");
+    const socket = io();
     if (totalDevices === 0) return;
     socket.on("connect", () => {
       setSocketIOConnected(dispatch, true);
