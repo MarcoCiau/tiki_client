@@ -43,7 +43,7 @@ export const registerUser = async (currentUser, dispatch) => {
     }
     */
     const response = await axios.post(
-      "http://localhost:4000/api/v1/auth/signup",
+      "/api/v1/auth/signup",
       currentUser
     );
     const { accessToken: token, refreshToken, user } = response.data;
@@ -76,7 +76,7 @@ export const loginUser = async (currentUser, dispatch) => {
   dispatch({ type: actionTypes.EXECUTE_NEW_REQUEST });
   try {
     const response = await axios.post(
-      "http://localhost:4000/api/v1/auth/signin",
+      "/api/v1/auth/signin",
       currentUser
     );
     const { accessToken: token, refreshToken, user } = response.data;
