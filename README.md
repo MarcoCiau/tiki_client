@@ -2,7 +2,7 @@
 Tiki IoT is an app focused on real-time monitoring and managing IoT devices (temperature sensors, energy meters, etc).
 ![Writing](/tiki_app.png)
 ## Demo Link 
-Access my app at [google.com](https://google.com)
+Access my app [here](https://tiki-iot.herokuapp.com/).
 
 To take it for a test run, try these login credentials:
 - **Email Address**: "email"
