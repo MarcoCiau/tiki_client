@@ -51,7 +51,7 @@ const AppContext = React.createContext();
 
 //global axios instance for protected end-points (require bearer token)
 export const authFetch = axios.create({
-  baseURL: "http://localhost:4000/api/v1", //TODO: setup env variable
+  baseURL: "/api/v1", 
 });
 //Defining a provider (wrapper)
 //Wrap child components in the Context Provider and supply the state value.
