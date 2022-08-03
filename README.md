@@ -18,6 +18,6 @@ I used the following technologies, dependencies and tools:
 - [Recharts](https://recharts.org/)
 - [React-table](https://www.npmjs.com/package/react-table)
 
-For details on the data backend arquitecture and REST API Documentation, visit the [backend repo](https://github.com/MarcoCiau/tiki).
+For details on the backend arquitecture and REST API Documentation, visit the [backend repo](https://github.com/MarcoCiau/tiki).
 ## Setup - Deployment
 Please follow the instructions [here](/Developer.md) to setup the project for development and to know how to deploy it. 
