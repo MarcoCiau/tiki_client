@@ -5,8 +5,8 @@ Tiki IoT is an app focused on real-time monitoring and managing IoT devices (tem
 Access my app [here](https://tiki-iot.herokuapp.com/).
 
 To take it for a test run, try these login credentials:
-- **Email Address**: "email"
-- **Password**: "sfs"
+- **Email Address**: "testuser3@email.com"
+- **Password**: "qwertyui8"
 ## Technologies
 I used the following technologies, dependencies and tools:
 - [React.js](https://reactjs.org/)
